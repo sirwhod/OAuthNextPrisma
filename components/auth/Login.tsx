@@ -1,8 +1,10 @@
 'use client'
 
-import { Session } from 'next-auth'
-import { signIn, signOut } from 'next-auth/react'
 import Image from 'next/image'
+
+import { Session } from 'next-auth'
+
+import { signIn, signOut } from 'next-auth/react'
 
 import { BsPersonPlus } from 'react-icons/bs'
 

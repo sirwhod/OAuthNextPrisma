@@ -8,20 +8,35 @@ import { signIn, signOut } from 'next-auth/react'
 
 import { BsPersonPlus } from 'react-icons/bs'
 
-// eslint-disable-next-line react/display-name
 export default ({ session }: { session: Session }) => {
+  let userImage = ''
+
   if (session) {
-    console.log(session)
+    if (session.user?.image) {
+      userImage = session.user.image
+    }
   }
+
   return (
     <>
       {!session ? (
-        <button className="p-3 bg-transparent text-xl" onClick={() => signIn()}>
-          <BsPersonPlus />
-        </button>
+        <>
+          <button
+            className="p-3 bg-transparent text-xl"
+            onClick={() => signIn('google')}
+          >
+            <BsPersonPlus />
+          </button>
+        </>
       ) : (
         <button onClick={() => signOut()}>
-          <Image src={session.user?.image} alt="foto de perfil" />
+          <Image
+            src={userImage}
+            width={50}
+            height={50}
+            alt=""
+            className="h-12 w-12 rounded-full object-fill"
+          />
         </button>
       )}
     </>
